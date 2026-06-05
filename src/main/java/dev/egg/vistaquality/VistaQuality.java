@@ -35,7 +35,7 @@ import org.slf4j.Logger;
 @Mod(VistaQuality.MODID)
 public class VistaQuality {
     public static final String MODID = "vistaquality";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public VistaQuality(IEventBus modEventBus, ModContainer modContainer) {
 
