@@ -3,6 +3,7 @@ package dev.egg.vistaquality.mixin;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.mehvahdjukaar.moonlight.api.util.math.Vec2i;
 import net.mehvahdjukaar.vista.client.renderer.TvBlockEntityRenderer;
+import net.mehvahdjukaar.vista.common.tv.TVBlock;
 import net.mehvahdjukaar.vista.common.tv.TVBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.Level;
@@ -18,6 +19,9 @@ public class TvBlockEntityRendererMixin {
     private Vec2i vistaquality$modifyEffectResolution(Vec2i originalResolution, @Local(argsOnly = true) TVBlockEntity blockEntity) {
         Level level = Minecraft.getInstance().level;
         if (level == null) return originalResolution;
+
+        if (!level.getBlockState(blockEntity.getBlockPos()).getValue(TVBlock.POWER_STATE).isStrong())
+            return originalResolution;
 
         int power = level.getBestNeighborSignal(blockEntity.getBlockPos());
 
